@@ -1,3 +1,4 @@
+import 'package:book_management/screens/login_screen/login_screen.dart';
 import 'package:book_management/widgets/colors.dart';
 import 'package:book_management/widgets/snackbar_widget.dart';
 import 'package:connectivity/connectivity.dart';
@@ -46,7 +47,15 @@ class _SplashScreenState extends State<SplashScreen> {
     var connectivityResult = await Connectivity().checkConnectivity();
     if(connectivityResult == ConnectivityResult.none){
       if(mounted){
-        snackbarMessageWidget(text: 'No Network', context: context, color: colorWhite, textColor: colorRed, behavior: SnackBarBehavior.fixed, time: 5000);
+        snackbarMessageWidget(text: 'Network Connection Lost', context: context, color: colorWhite, textColor: colorRed, behavior: SnackBarBehavior.fixed, time: 5000);
+      }
+    }
+    else{
+      await Future.delayed(const Duration(milliseconds: 1800));
+      if(mounted){
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return LoginScreen();
+        },));
       }
     }
   }

@@ -9,7 +9,7 @@ snackbarMessageWidget({required String text, required context, required Color co
     content: Text(
       text,
       textAlign: TextAlign.center,
-      style: TextStyle(color: textColor, fontWeight: FontWeight.bold,),
+      style: TextStyle(color: textColor,fontFamily: 'interRegular'),
     ),
   ));
 }
