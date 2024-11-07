@@ -1,6 +1,7 @@
-import 'package:book_management/screens/login_screen/login_screen.dart';
-import 'package:book_management/widgets/colors.dart';
-import 'package:book_management/widgets/snackbar_widget.dart';
+import 'package:book_management/src/presentation/ui/login_screen/login_screen.dart';
+import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
+import 'package:book_management/src/presentation/widgets/common_widgets/snackbar_widget.dart';
+import 'package:book_management/src/presentation/widgets/splash_screen_widgets/splash_screen_widget/splash_screen_widget.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,23 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-         width: widget.screenSize.width,
-        height: widget.screenSize.height,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFFF59504),
-              Color(0xFFF56C04),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Center(
-          child: Image.asset('assets/images/Logo.png'),
-        ),
-      ),
+      body: SplashScreenWidget(widget: widget),
     );
   }
   Future<void> checkLogin()async{

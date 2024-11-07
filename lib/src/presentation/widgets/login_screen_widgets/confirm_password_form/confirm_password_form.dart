@@ -1,6 +1,6 @@
-import 'package:book_management/screens/login_screen/authentication_detail_head/authentication_detail_head.dart';
-import 'package:book_management/screens/login_screen/login_screen.dart';
-import 'package:book_management/widgets/custom_text_form_field.dart';
+import 'package:book_management/src/presentation/widgets/login_screen_widgets/authentication_detail_head/authentication_detail_head.dart';
+import 'package:book_management/src/presentation/ui/login_screen/login_screen.dart';
+import 'package:book_management/src/presentation/widgets/common_widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmPasswordForm extends StatelessWidget {

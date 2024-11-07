@@ -1,4 +1,4 @@
-import 'package:book_management/widgets/colors.dart';
+import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {

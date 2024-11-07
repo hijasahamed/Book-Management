@@ -1,9 +1,9 @@
-import 'package:book_management/screens/login_screen/confirm_password_form/confirm_password_form.dart';
-import 'package:book_management/screens/login_screen/login_screen_logo_image/login_screen_logo_image.dart';
-import 'package:book_management/screens/login_screen/password_form/password_form.dart';
-import 'package:book_management/screens/login_screen/register_button/register_button.dart';
-import 'package:book_management/screens/login_screen/user_name_form/user_name_form.dart';
-import 'package:book_management/widgets/colors.dart';
+import 'package:book_management/src/presentation/widgets/login_screen_widgets/confirm_password_form/confirm_password_form.dart';
+import 'package:book_management/src/presentation/widgets/login_screen_widgets/login_screen_logo_image/login_screen_logo_image.dart';
+import 'package:book_management/src/presentation/widgets/login_screen_widgets/password_form/password_form.dart';
+import 'package:book_management/src/presentation/widgets/login_screen_widgets/register_button/register_button.dart';
+import 'package:book_management/src/presentation/widgets/login_screen_widgets/user_name_form/user_name_form.dart';
+import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

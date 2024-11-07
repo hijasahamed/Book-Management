@@ -14,8 +14,8 @@ class LoginScreenLogoImage extends StatelessWidget {
       padding: EdgeInsets.only(top: screenSize.height/25,bottom: screenSize.height/11),
       child: Center(
         child: Container(
-          height: screenSize.height/10,
-          width: screenSize.height/10,
+          height: screenSize.height/11,
+          width: screenSize.height/11,
           decoration: BoxDecoration(
             border: Border.all(width: .1),
             borderRadius: BorderRadius.circular(screenSize.width/20),
