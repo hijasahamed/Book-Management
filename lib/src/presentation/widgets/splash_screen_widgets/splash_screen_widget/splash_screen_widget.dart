@@ -25,7 +25,7 @@ class SplashScreenWidget extends StatelessWidget {
           end: Alignment.bottomCenter,
         ),
       ),
-      child: const SplashScreenLogoImage(),
+      child: SplashScreenLogoImage(screenSize: widget.screenSize,),
     );
   }
 }

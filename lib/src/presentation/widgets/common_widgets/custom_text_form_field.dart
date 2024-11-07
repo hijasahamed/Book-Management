@@ -25,13 +25,13 @@ class CustomTextFormField extends StatelessWidget {
       filled: true,
       fillColor: colorWhite,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(screenSize.width/45),
+        borderRadius: BorderRadius.circular(screenSize.width * (9 / 360)),
         borderSide: const BorderSide(
           color:  Color(0xFFE6E6E6),
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(screenSize.width/45),
+        borderRadius: BorderRadius.circular(screenSize.width * (9 / 360)),
         borderSide: const BorderSide(
           color: Color(0XFFF56C04),
           width: 2,
@@ -39,14 +39,14 @@ class CustomTextFormField extends StatelessWidget {
       ),
       enabledBorder: OutlineInputBorder(
         borderSide: const BorderSide(color: Color(0xFFE6E6E6)),
-        borderRadius: BorderRadius.all(Radius.circular(screenSize.width/45))
+        borderRadius: BorderRadius.all(Radius.circular(screenSize.width * (9 / 360)))
       ),
       contentPadding: EdgeInsets.symmetric(
         vertical: screenSize.height / 60,
         horizontal: screenSize.width / 25,
       ),
       hintText: hintText,
-      hintStyle: TextStyle(color: hintTextColor,fontSize: screenSize.width/27,fontFamily: 'interRegular')     
+      hintStyle: TextStyle(color: hintTextColor,fontSize: screenSize.width * (15 / 360),fontFamily: 'interRegular')     
     );
 
     return TextFormField(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreenLogoImage extends StatelessWidget {
   const LoginScreenLogoImage({
@@ -13,15 +14,7 @@ class LoginScreenLogoImage extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: screenSize.height/25,bottom: screenSize.height/11),
       child: Center(
-        child: Container(
-          height: screenSize.height/11,
-          width: screenSize.height/11,
-          decoration: BoxDecoration(
-            border: Border.all(width: .1),
-            borderRadius: BorderRadius.circular(screenSize.width/20),
-            image: const DecorationImage(image: AssetImage('assets/images/Logo.png'),fit: BoxFit.cover)
-          ),
-        ),
+        child: SvgPicture.asset('assets/images/app logo.svg',height: screenSize.height/10,width: screenSize.height/10,),
       ),
     );
   }

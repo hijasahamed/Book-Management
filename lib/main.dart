@@ -1,4 +1,4 @@
-import 'package:book_management/src/presentation/ui/splash_screen/splash_screen.dart';
+import 'package:book_management/router.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,14 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    return MaterialApp(
+    final router = goRouter(screenSize: screenSize);
+    return MaterialApp.router(
       title: 'Book Management',
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: SplashScreen(screenSize: screenSize,),
     );
   }
 }

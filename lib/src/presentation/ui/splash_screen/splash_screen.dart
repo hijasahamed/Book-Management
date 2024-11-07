@@ -1,10 +1,11 @@
-import 'package:book_management/src/presentation/ui/login_screen/login_screen.dart';
+import 'package:book_management/router.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/snackbar_widget.dart';
 import 'package:book_management/src/presentation/widgets/splash_screen_widgets/splash_screen_widget/splash_screen_widget.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
@@ -45,9 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
     else{
       await Future.delayed(const Duration(milliseconds: 1800));
       if(mounted){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return LoginScreen(screenSize: widget.screenSize,);
-        },));
+        context.goNamed(AppRoute.login.name);
       }
     }
   }
