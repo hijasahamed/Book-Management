@@ -3,6 +3,7 @@ import 'package:book_management/widgets/colors.dart';
 import 'package:book_management/widgets/snackbar_widget.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
@@ -18,6 +19,12 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Color(0xFFF59504),
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Color(0xFFF56C04),
+      systemNavigationBarIconBrightness: Brightness.light,
+    ));
     checkLogin();
     super.initState();
   }
@@ -54,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
       await Future.delayed(const Duration(milliseconds: 1800));
       if(mounted){
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return LoginScreen();
+          return LoginScreen(screenSize: widget.screenSize,);
         },));
       }
     }
