@@ -51,9 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
                 icon: Icon(
-                  Icons.car_rental,
+                  Icons.person,
                 ),
-                label: 'Buy',
+                label: 'Authors',
               ),
             ],
             selectedItemColor: const Color(0XFFF56C04),
