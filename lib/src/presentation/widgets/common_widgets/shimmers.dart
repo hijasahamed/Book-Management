@@ -60,7 +60,7 @@ class ItemShimmer extends StatelessWidget {
       itemCount: 6,
       itemBuilder: (context, index) {
         return Padding(
-          padding: EdgeInsets.all(screenSize.width / 75),
+          padding: EdgeInsets.all(screenSize.width / 100),
           child: Skeleton(height: screenSize.height/13,),
         );
       },
