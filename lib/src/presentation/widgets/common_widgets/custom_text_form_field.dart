@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String hintText;
-  final bool obscureText;
   final TextInputType keyboardType;
   final Size screenSize;
   final TextEditingController controller;
   final TextCapitalization textCapitalization;
+  final bool obscureText;
+  final bool isPasswordForm;
 
   const CustomTextFormField({
     super.key,
     required this.hintText,
-    required this.obscureText,
     required this.keyboardType,
     required this.screenSize,
     required this.controller,
-    required this.textCapitalization
+    required this.textCapitalization,
+    required this.obscureText,
+    required this.isPasswordForm
   });
 
   @override
@@ -46,7 +48,15 @@ class CustomTextFormField extends StatelessWidget {
         horizontal: screenSize.width / 25,
       ),
       hintText: hintText,
-      hintStyle: TextStyle(color: hintTextColor,fontSize: screenSize.width * (15 / 360),fontFamily: 'interRegular')     
+      hintStyle: TextStyle(color: hintTextColor,fontSize: screenSize.width * (15 / 360),fontFamily: 'interRegular'),
+      suffixIcon:  isPasswordForm
+      ? IconButton(
+        onPressed: () {
+          
+        }, 
+        icon: Icon(obscureText? Icons.visibility : Icons.visibility_off)
+      )
+      : null    
     );
 
     return TextFormField(

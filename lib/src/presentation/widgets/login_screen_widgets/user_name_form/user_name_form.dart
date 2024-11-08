@@ -19,11 +19,12 @@ class UserNameForm extends StatelessWidget {
         AuthenticationDetailHead(screenSize: screenSize,title: 'Username',),
         CustomTextFormField(
           hintText: 'Enter your username', 
-          obscureText: false, 
           keyboardType: TextInputType.text, 
           screenSize: screenSize, 
           controller: userNameController,
           textCapitalization: TextCapitalization.words,
+          obscureText: false,
+          isPasswordForm: false,
         ),
       ],
     );

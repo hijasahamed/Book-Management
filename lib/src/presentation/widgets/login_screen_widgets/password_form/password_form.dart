@@ -3,6 +3,7 @@ import 'package:book_management/src/presentation/ui/login_screen/login_screen.da
 import 'package:book_management/src/presentation/widgets/common_widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
+
 class PasswordForm extends StatelessWidget {
   const PasswordForm({
     super.key,
@@ -19,11 +20,12 @@ class PasswordForm extends StatelessWidget {
         AuthenticationDetailHead(screenSize: screenSize,title: 'Password',),
         CustomTextFormField(
           hintText: 'Enter your password', 
-          obscureText: false, 
           keyboardType: TextInputType.name, 
           screenSize: screenSize, 
           controller: passwordController,
           textCapitalization: TextCapitalization.none,
+          obscureText: true,
+          isPasswordForm: true,
         ),
       ],
     );

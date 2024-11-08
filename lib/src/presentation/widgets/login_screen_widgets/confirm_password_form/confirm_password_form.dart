@@ -19,11 +19,12 @@ class ConfirmPasswordForm extends StatelessWidget {
         AuthenticationDetailHead(screenSize: screenSize,title: 'Confirm Password',),
         CustomTextFormField(
           hintText: 'Confirm your password', 
-          obscureText: false, 
           keyboardType: TextInputType.text, 
           screenSize: screenSize, 
           controller: confirmPasswordController,
           textCapitalization: TextCapitalization.none,
+          obscureText: true,
+          isPasswordForm: true,
         ),
       ],
     );
