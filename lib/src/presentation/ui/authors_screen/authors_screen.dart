@@ -37,7 +37,7 @@ class AuthorsScreen extends StatelessWidget {
                 Color backgroundColor = avatarColors[index % avatarColors.length].withOpacity(0.040);
                 Color textColor = avatarColors[index % avatarColors.length];
                 return Container(
-                  margin: EdgeInsets.all(screenSize.width / 45),
+                  margin: EdgeInsets.only(left: screenSize.width / 30,right: screenSize.width / 30,top: screenSize.width / 45,bottom: screenSize.width / 45),
                   padding: EdgeInsets.all(screenSize.width / 75),
                   decoration: BoxDecoration(
                     color: const Color(0XFFF8F8F8),

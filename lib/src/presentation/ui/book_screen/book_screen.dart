@@ -37,7 +37,21 @@ class BookScreen extends StatelessWidget {
                     padding: EdgeInsets.only(left: screenSize.width/40,right: screenSize.width/35),
                     child: SvgPicture.asset('assets/images/search icon.svg',fit: BoxFit.cover,height: screenSize.height * (10 / 360),),
                   ),
-                  TextWidget(text: 'Search...', color: searchTextColor, size: screenSize.width * (14 / 360), fontFamily: 'interRegular', weight: FontWeight.normal)
+                  Expanded(
+                    child: TextField(
+                      textCapitalization: TextCapitalization.words,
+                      decoration: InputDecoration(
+                        hintText: 'Search...',
+                        border: InputBorder.none,
+                        isDense: true,
+                        hintStyle: TextStyle(
+                          color: searchTextColor,
+                          fontSize: screenSize.width * (14 / 360),
+                          fontFamily: 'interRegular',
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

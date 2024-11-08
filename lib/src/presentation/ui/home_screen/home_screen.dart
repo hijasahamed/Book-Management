@@ -16,7 +16,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int tabIndex = 0; 
+  int tabIndex = 0;
+
   @override
   void initState() {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -32,16 +33,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     BooksScreenBloc booksScreenBloc = BooksScreenBloc();
-    List <Widget> buildSellerTabs(Size screenSize){
+    List<Widget> buildSellerTabs(Size screenSize) {
       return [
-        BookScreen(screenSize: widget.screenSize,), AuthorsScreen(screenSize: widget.screenSize,)
+        BookScreen(
+          screenSize: widget.screenSize,
+        ),
+        AuthorsScreen(
+          screenSize: widget.screenSize,
+        )
       ];
     }
+
     return BlocBuilder<BooksScreenBloc, BooksScreenState>(
       bloc: booksScreenBloc,
       builder: (context, state) {
         List<Widget> tabScreen = buildSellerTabs(widget.screenSize);
-        return Scaffold(          
+
+        return Scaffold(
           body: tabScreen[tabIndex],
           bottomNavigationBar: BottomNavigationBar(
             backgroundColor: colorWhite,
@@ -50,30 +58,32 @@ class _HomeScreenState extends State<HomeScreen> {
               tabIndex = index;
               booksScreenBloc.add(ChangeTabIndexEvent());
             },
-            items:  [
+            items: [
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: SvgPicture.asset((tabIndex==0)? 'assets/images/home logo orange.svg' : 'assets/images/home logo grey.svg'),
+                icon: SvgPicture.asset((tabIndex == 0)
+                    ? 'assets/images/home logo orange.svg'
+                    : 'assets/images/home logo grey.svg'),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: SvgPicture.asset((tabIndex==1)? 'assets/images/author logo orange.svg' : 'assets/images/author logo grey.svg'),
+                icon: SvgPicture.asset((tabIndex == 1)
+                    ? 'assets/images/author logo orange.svg'
+                    : 'assets/images/author logo grey.svg'),
                 label: 'Authors',
               ),
             ],
             selectedItemColor: const Color(0XFFF56C04),
             selectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: widget.screenSize.width * (9 / 360),
-              fontFamily: 'interSemiBold'
-            ),
+                fontWeight: FontWeight.normal,
+                fontSize: widget.screenSize.width * (9 / 360),
+                fontFamily: 'interSemiBold'),
             unselectedItemColor: const Color(0XFFA39B97),
             unselectedLabelStyle: TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: widget.screenSize.width * (9 / 360),
-              fontFamily: 'interSemiBold'
-            ),
+                fontWeight: FontWeight.normal,
+                fontSize: widget.screenSize.width * (9 / 360),
+                fontFamily: 'interSemiBold'),
           ),
         );
       },
