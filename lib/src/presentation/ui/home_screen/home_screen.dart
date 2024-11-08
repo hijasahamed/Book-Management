@@ -1,27 +1,38 @@
 import 'package:book_management/src/presentation/bloc/books_screen_bloc/bloc/books_screen_bloc.dart';
+import 'package:book_management/src/presentation/ui/authors_screen/authors_screen.dart';
+import 'package:book_management/src/presentation/ui/book_screen/book_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BooksScreen extends StatefulWidget {
-  const BooksScreen({super.key, required this.screenSize});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key, required this.screenSize});
   final Size screenSize;
 
   @override
-  State<BooksScreen> createState() => _BooksScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _BooksScreenState extends State<BooksScreen> {
+class _HomeScreenState extends State<HomeScreen> {
+  int tabIndex = 0; 
+  @override
+  void initState() {
+    tabIndex = 0;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     BooksScreenBloc booksScreenBloc = BooksScreenBloc();
-    int tabIndex = 0;
-    List tabScreen = [
-
-    ];
+    List <Widget> buildSellerTabs(Size screenSize){
+      return [
+        BookScreen(screenSize: widget.screenSize,), AuthorsScreen(screenSize: widget.screenSize,)
+      ];
+    }
     return BlocBuilder<BooksScreenBloc, BooksScreenState>(
       bloc: booksScreenBloc,
       builder: (context, state) {
-        return Scaffold(
+        List<Widget> tabScreen = buildSellerTabs(widget.screenSize);
+        return Scaffold(          
           body: tabScreen[tabIndex],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: tabIndex,
@@ -45,14 +56,16 @@ class _BooksScreenState extends State<BooksScreen> {
             ],
             selectedItemColor: const Color(0XFFF56C04),
             selectedLabelStyle: TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: widget.screenSize.width * (9 / 360),
-                fontFamily: 'interSemiBold'),
+              fontWeight: FontWeight.normal,
+              fontSize: widget.screenSize.width * (9 / 360),
+              fontFamily: 'interSemiBold'
+            ),
             unselectedItemColor: const Color(0XFFA39B97),
             unselectedLabelStyle: TextStyle(
-                fontWeight: FontWeight.normal,
-                fontSize: widget.screenSize.width * (9 / 360),
-                fontFamily: 'interSemiBold'),
+              fontWeight: FontWeight.normal,
+              fontSize: widget.screenSize.width * (9 / 360),
+              fontFamily: 'interSemiBold'
+            ),
           ),
         );
       },

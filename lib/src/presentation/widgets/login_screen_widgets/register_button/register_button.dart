@@ -1,4 +1,4 @@
-import 'package:book_management/src/presentation/ui/books_screen/books_screen.dart';
+import 'package:book_management/src/presentation/ui/home_screen/home_screen.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class RegisterButton extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return BooksScreen(screenSize: screenSize);
+            return HomeScreen(screenSize: screenSize);
           },));
         },
         child: Ink(
