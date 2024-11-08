@@ -69,7 +69,7 @@ class BookScreen extends StatelessWidget {
                         return InkWell(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                              return BookDetailsScreen(screenSize: screenSize);
+                              return BookDetailsScreen(screenSize: screenSize,book: book,);
                             },));
                           },
                           child: BookItem(book: book, screenSize: screenSize)
@@ -105,7 +105,7 @@ class BookItem extends StatelessWidget {
                     padding: EdgeInsets.all(screenSize.width/50),
                     child: Image.network(
                         book.coverPictureURL,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.cover, 
                         errorBuilder: (context, error, stackTrace) => Icon(
                           Icons.broken_image,
                           size: screenSize.height * (60 / 800),
@@ -126,36 +126,7 @@ class BookItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextWidget(text: book.title, color: const Color(0XFF1D1D1F), size: screenSize.width * (13/360), fontFamily: 'interMedium', weight: FontWeight.normal,ellipsis: true,maxline: false,),
-                FutureBuilder<String?>(
-                  future: fetchAuthorNameById(id: book.authorId),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return TextWidget(
-                        text: 'Loading...',
-                        color: const Color(0XFF5C5C5C),
-                        size: screenSize.width * (11 / 360),
-                        fontFamily: 'interRegular',
-                        weight: FontWeight.normal,
-                      );
-                    } else if (snapshot.hasError) {
-                      return TextWidget(
-                        text: 'Error loading author',
-                        color: Colors.red,
-                        size: screenSize.width * (11 / 360),
-                        fontFamily: 'interRegular',
-                        weight: FontWeight.normal,
-                      );
-                    } else {
-                      return TextWidget(
-                        text: snapshot.data ?? 'Unknown Author',
-                        color: const Color(0XFF5C5C5C),
-                        size: screenSize.width * (11 / 360),
-                        fontFamily: 'interRegular',
-                        weight: FontWeight.normal,
-                      );
-                    }
-                  },
-                ),
+                BookAuthor(book: book, screenSize: screenSize,size: screenSize.width * (11 / 360),color: const Color(0XFF5C5C5C),),
                 Row(
                   children: [
                     Icon(Icons.star, color: const Color(0XFFFFC700), size: screenSize.height * (15 / 800)),
@@ -170,6 +141,55 @@ class BookItem extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class BookAuthor extends StatelessWidget {
+  const BookAuthor({
+    super.key,
+    required this.book,
+    required this.screenSize,
+    required this.color,
+    required this.size
+  });
+
+  final BooksApiModel book;
+  final Size screenSize;
+  final double size;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<String?>(
+      future: fetchAuthorNameById(id: book.authorId),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return TextWidget(
+            text: 'Loading...',
+            color: const Color(0XFF5C5C5C),
+            size: screenSize.width * (11 / 360),
+            fontFamily: 'interRegular',
+            weight: FontWeight.normal,
+          );
+        } else if (snapshot.hasError) {
+          return TextWidget(
+            text: 'Error loading author',
+            color: Colors.red,
+            size: screenSize.width * (11 / 360),
+            fontFamily: 'interRegular',
+            weight: FontWeight.normal,
+          );
+        } else {
+          return TextWidget(
+            text: snapshot.data ?? 'Unknown Author',
+            color: color,
+            size: size,
+            fontFamily: 'interRegular',
+            weight: FontWeight.normal,
+          );
+        }
+      },
     );
   }
 }
