@@ -5,6 +5,7 @@ import 'package:book_management/src/presentation/widgets/common_widgets/colors.d
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.screenSize});
@@ -49,17 +50,15 @@ class _HomeScreenState extends State<HomeScreen> {
               tabIndex = index;
               booksScreenBloc.add(ChangeTabIndexEvent());
             },
-            items: const [
+            items:  [
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: Icon(Icons.home),
+                icon: SvgPicture.asset((tabIndex==0)? 'assets/images/home logo orange.svg' : 'assets/images/home logo grey.svg'),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
                 backgroundColor: Colors.white,
-                icon: Icon(
-                  Icons.person,
-                ),
+                icon: SvgPicture.asset((tabIndex==1)? 'assets/images/author logo orange.svg' : 'assets/images/author logo grey.svg'),
                 label: 'Authors',
               ),
             ],

@@ -74,6 +74,10 @@ flutter:
     - assets/images/app logo.svg
     - assets/images/search icon.svg
     - assets/images/book profile.png
+    - assets/images/author logo grey.svg
+    - assets/images/author logo orange.svg
+    - assets/images/home logo grey.svg
+    - assets/images/home logo orange.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
