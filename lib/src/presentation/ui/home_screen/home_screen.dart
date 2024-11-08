@@ -1,6 +1,7 @@
 import 'package:book_management/src/presentation/bloc/books_screen_bloc/bloc/books_screen_bloc.dart';
 import 'package:book_management/src/presentation/ui/authors_screen/authors_screen.dart';
 import 'package:book_management/src/presentation/ui/book_screen/book_screen.dart';
+import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return Scaffold(          
           body: tabScreen[tabIndex],
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: colorWhite,
             currentIndex: tabIndex,
             onTap: (index) {
               tabIndex = index;

@@ -9,6 +9,7 @@ class TextWidget extends StatelessWidget {
       required this.size,
       required this.fontFamily,
       this.alignTextCenter,
+      this.ellipsis,
       required this.weight});
   final String text;
   final Color color;
@@ -17,6 +18,7 @@ class TextWidget extends StatelessWidget {
   final FontWeight weight;
   final String fontFamily;
   final bool? alignTextCenter;
+  final bool? ellipsis;
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -30,6 +32,7 @@ class TextWidget extends StatelessWidget {
       ),
       maxLines: (maxline==true)? 10 :1,
       textAlign: (alignTextCenter==true)?TextAlign.center:TextAlign.left,
+      overflow: (ellipsis==true)? TextOverflow.ellipsis: null,
     );
   }
 }
