@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:book_management/src/presentation/ui/book_details_screen/book_details_screen.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/shimmers.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/text_widget.dart';
@@ -65,7 +66,14 @@ class BookScreen extends StatelessWidget {
                       itemCount: books.length,
                       itemBuilder: (context, index) {
                         final book = books[index];
-                        return BookItem(book: book, screenSize: screenSize);
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                              return BookDetailsScreen(screenSize: screenSize);
+                            },));
+                          },
+                          child: BookItem(book: book, screenSize: screenSize)
+                        );
                       },
                     ),
                   );
