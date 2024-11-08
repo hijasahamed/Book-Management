@@ -1,7 +1,6 @@
 import 'package:book_management/src/presentation/bloc/login_screen_bloc/bloc/login_screen_bloc.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -21,7 +20,8 @@ class CustomTextFormField extends StatefulWidget {
       required this.controller,
       required this.textCapitalization,
       required this.obscureText,
-      required this.isPasswordForm});
+      required this.isPasswordForm,
+      });
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();

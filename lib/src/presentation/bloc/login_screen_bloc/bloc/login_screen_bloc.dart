@@ -12,10 +12,16 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
       
     });
     on<PasswordObscureVariableSettingEvent>(passwordObscureVariableSettingEvent);
+    on<RegisterButtonClickedCircularIndicatorEvent>(registerButtonClickedCircularIndicatorEvent);
   }
 
   FutureOr<void> passwordObscureVariableSettingEvent(
     PasswordObscureVariableSettingEvent event, Emitter<LoginScreenState> emit) {
       emit(PasswordObscureVariableSettingState());
+  }
+
+  FutureOr<void> registerButtonClickedCircularIndicatorEvent(
+    RegisterButtonClickedCircularIndicatorEvent event, Emitter<LoginScreenState> emit) {
+      emit(RegisterButtonClickedCircularIndicatorState());
   }
 }

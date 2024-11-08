@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 TextEditingController userNameController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
 TextEditingController confirmPasswordController = TextEditingController();
+final GlobalKey<FormState> userLoginformkey = GlobalKey<FormState>();
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key, required this.screenSize});
@@ -39,16 +40,19 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.all(widget.screenSize.width / 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                LoginScreenLogoImage(screenSize: widget.screenSize),
-                UserNameForm(screenSize: widget.screenSize),
-                PasswordForm(screenSize: widget.screenSize),
-                ConfirmPasswordForm(screenSize: widget.screenSize),
-                RegisterButton(screenSize: widget.screenSize)
-              ],
+            child: Form(
+              key: userLoginformkey,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LoginScreenLogoImage(screenSize: widget.screenSize),
+                  UserNameForm(screenSize: widget.screenSize),
+                  PasswordForm(screenSize: widget.screenSize),
+                  ConfirmPasswordForm(screenSize: widget.screenSize),
+                  RegisterButton(screenSize: widget.screenSize)
+                ],
+              ),
             ),
           ),
         ),

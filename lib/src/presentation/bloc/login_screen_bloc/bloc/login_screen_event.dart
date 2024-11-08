@@ -4,3 +4,5 @@ part of 'login_screen_bloc.dart';
 sealed class LoginScreenEvent {}
 
 class PasswordObscureVariableSettingEvent extends LoginScreenEvent {}
+
+class RegisterButtonClickedCircularIndicatorEvent extends LoginScreenEvent {}

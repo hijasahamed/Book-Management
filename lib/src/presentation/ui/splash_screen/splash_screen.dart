@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:book_management/src/presentation/ui/home_screen/home_screen.dart';
 import 'package:book_management/src/presentation/ui/login_screen/login_screen.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/snackbar_widget.dart';
@@ -5,6 +8,7 @@ import 'package:book_management/src/presentation/widgets/splash_screen_widgets/s
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
@@ -37,15 +41,22 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   Future<void> checkLogin()async{
     var connectivityResult = await Connectivity().checkConnectivity();
+    final sharedPref =  await SharedPreferences.getInstance();
+    final isUserIn = sharedPref.getString('token');
     if(connectivityResult == ConnectivityResult.none){
       if(mounted){
         snackbarMessageWidget(text: 'Network Connection Lost', context: context, color: colorWhite, textColor: colorRed, behavior: SnackBarBehavior.fixed, time: 5000);
       }
+    }else if(isUserIn != null){
+      await Future.delayed(const Duration(milliseconds: 1800));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+          return HomeScreen(screenSize: widget.screenSize,);
+        },));
     }
     else{
       await Future.delayed(const Duration(milliseconds: 1800));
       if(mounted){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
           return LoginScreen(screenSize: widget.screenSize,);
         },));
       }

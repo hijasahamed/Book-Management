@@ -3,6 +3,7 @@ import 'package:book_management/src/presentation/ui/authors_screen/authors_scree
 import 'package:book_management/src/presentation/ui/book_screen/book_screen.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,6 +18,12 @@ class _HomeScreenState extends State<HomeScreen> {
   int tabIndex = 0; 
   @override
   void initState() {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: colorWhite,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: colorWhite,
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ));
     tabIndex = 0;
     super.initState();
   }
