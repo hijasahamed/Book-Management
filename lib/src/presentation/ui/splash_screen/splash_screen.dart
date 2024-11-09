@@ -39,6 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: SplashScreenWidget(widget: widget),
     );
   }
+
   Future<void> checkLogin()async{
     var connectivityResult = await Connectivity().checkConnectivity();
     final sharedPref =  await SharedPreferences.getInstance();
@@ -62,4 +63,5 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     }
   }
+  
 }

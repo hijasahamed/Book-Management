@@ -73,7 +73,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     loginScreenBloc.add(PasswordObscureVariableSettingEvent());
                   },
                   icon: Icon(
-                      obscureText ? Icons.visibility : Icons.visibility_off),
+                      obscureText ? Icons.visibility_off : Icons.visibility),
                 );
               },
             )

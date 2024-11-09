@@ -6,3 +6,4 @@ sealed class LoginScreenEvent {}
 class PasswordObscureVariableSettingEvent extends LoginScreenEvent {}
 
 class RegisterButtonClickedCircularIndicatorEvent extends LoginScreenEvent {}
+class RegisterButtonClickedCircularIndicatorStopEvent extends LoginScreenEvent {}

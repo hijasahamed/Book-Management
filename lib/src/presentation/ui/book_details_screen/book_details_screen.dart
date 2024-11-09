@@ -35,18 +35,27 @@ class BookDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: screenSize.height/2.9,
+              height: screenSize.height / 2.9,
               color: const Color(0XFFF8F8F8),
               child: Center(
                 child: Container(
-                  margin: EdgeInsets.all(screenSize.width/20),
-                  width: screenSize.width /2,
+                  margin: EdgeInsets.all(screenSize.width / 20),
+                  width: screenSize.width / 2,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(book.coverPictureURL),
+                      image: (book.coverPictureURL.isNotEmpty)
+                          ? NetworkImage(book.coverPictureURL)
+                          : const AssetImage('assets/placeholder_image.png') as ImageProvider,
                       fit: BoxFit.fitHeight,
                     ),
                   ),
+                  child: (book.coverPictureURL.isEmpty)
+                      ? const Icon(
+                          Icons.broken_image,
+                          size: 50,
+                          color: Colors.grey,
+                        )
+                      : null,
                 ),
               ),
             ),

@@ -266,7 +266,7 @@ Future<List<BooksApiModel>> fetchBookDetails()async{
   return [];
 }
 
-Future<String?> fetchAuthorNameById({required String id}) async {
+Future<String?> fetchAuthorNameById({required String id}) async { 
   var url = 'https://assessment.eltglobal.in/api/authors/$id';
   try {
     final response = await http.get(Uri.parse(url));
