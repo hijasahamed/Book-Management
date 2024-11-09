@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:book_management/src/data/models/models.dart';
+import 'package:book_management/src/presentation/bloc/books_screen_bloc/bloc/books_screen_bloc.dart';
 import 'package:book_management/src/presentation/widgets/book_details_screen_widgets/app_bar/book_details_appbar.dart';
 import 'package:book_management/src/presentation/widgets/book_details_screen_widgets/body/book_details_body.dart';
 import 'package:book_management/src/presentation/widgets/book_details_screen_widgets/bottom_bar/book_details_bottom_nav.dart';
@@ -10,6 +11,7 @@ import 'package:book_management/src/presentation/widgets/common_widgets/colors.d
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 dynamic ratingValue = 0;
 class BookDetailsScreen extends StatelessWidget {
@@ -40,31 +42,31 @@ class BookDetailsScreen extends StatelessWidget {
 
 
 
-Future<void> addUserRating({required dynamic rating, required String bookId}) async {
-  int intRating = rating.toInt();
-  
+Future<void> addUserRating({required dynamic rating, required String bookId,required BooksScreenBloc booksScreenBloc}) async { 
   try {
-    String? token = await decodeToken();
-    if (token == null) {
+    booksScreenBloc.add(RatingAddingCircularEvent());
+    int intRating = rating.toInt(); 
+    String? userId = await decodeToken();
+    final sharedPref = await SharedPreferences.getInstance();
+    String? token = sharedPref.getString('token');
+    log(token.toString());
+    if (userId == null) {
       log("Error: User token is null");
       return;
     }
-    print(intRating);
-    print(bookId);
-    print(token);
 
     final body = json.encode({
-      'userId': '67c7d0680d1d0db4',
-      'rating': 2,
+      'userId': userId,
+      'rating': intRating,
     });
 
-    const url = 'https://assessment.eltglobal.in/api/books/670f94b2d19360ca93d716eb/ratings:add';
+    final url = 'https://assessment.eltglobal.in/api/books/$bookId/ratings:add';
     final uri = Uri.parse(url);
     final response = await http.patch(
       uri,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1YTBiZGJmNWUxZWI0ZTciLCJpYXQiOjE3MzExNDE3NjJ9.7y-NldDb_dIOO5Lj40tIeIsEODjKKqdR4NkW27Zpi-Y',
+        'Authorization': 'Bearer $token',
       },
       body: body,
     );
@@ -76,6 +78,7 @@ Future<void> addUserRating({required dynamic rating, required String bookId}) as
         log(response.body);
       log("Failed to update rating with status code: ${response.statusCode}");
     }
+    booksScreenBloc.add(RatingAddingCircularStopEvent());
   } catch (e) {
     log("Error during rating update: $e");
   }
