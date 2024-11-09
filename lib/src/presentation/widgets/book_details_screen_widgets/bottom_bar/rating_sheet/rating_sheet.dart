@@ -1,3 +1,4 @@
+import 'package:book_management/src/data/datasource/remote_service.dart';
 import 'package:book_management/src/presentation/bloc/books_screen_bloc/bloc/books_screen_bloc.dart';
 import 'package:book_management/src/presentation/ui/book_details_screen/book_details_screen.dart';
 import 'package:book_management/src/presentation/widgets/book_details_screen_widgets/bottom_bar/rating_sheet/rating_submit_text/rating_submit_text.dart';
