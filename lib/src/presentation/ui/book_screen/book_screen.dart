@@ -1,13 +1,11 @@
-import 'dart:convert';
-import 'dart:developer';
-
+import 'package:book_management/src/data/datasource/remote_service.dart';
+import 'package:book_management/src/data/models/models.dart';
 import 'package:book_management/src/presentation/ui/book_details_screen/book_details_screen.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/shimmers.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart' as http;
 
 class BookScreen extends StatelessWidget {
   const BookScreen({super.key,required this.screenSize});
@@ -100,6 +98,15 @@ class BookScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+
 
 class BookItem extends StatelessWidget {
   final BooksApiModel book;
@@ -208,78 +215,3 @@ class BookAuthor extends StatelessWidget {
   }
 }
 
-
-class BooksApiModel {
-  final String id;
-  final String title;
-  final String description;
-  final String publishedDate;
-  final String authorId;
-  final String coverPictureURL;
-  final int price;
-  final List ratings;
-  final int starCount;
-
-  BooksApiModel({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.publishedDate,
-    required this.authorId,
-    required this.coverPictureURL,
-    required this.price,
-    required this.ratings,
-    required this.starCount
-  });
-
-  factory BooksApiModel.fromJson(Map<String, dynamic> json) {
-    return BooksApiModel(
-      id: json['id'].toString(),
-      title: json['title'].toString(),
-      description: json['description'].toString(),
-      publishedDate: json['publishedDate'].toString(),
-      authorId: json['authorId'].toString(),
-      coverPictureURL: json['coverPictureURL'].toString(),
-      price: json['price'],
-      ratings: json['ratings'],
-      starCount: json['starCount'],
-    );
-  }
-}
-
-
-Future<List<BooksApiModel>> fetchBookDetails()async{
-  const url = 'https://assessment.eltglobal.in/api/books?page=1&limit=10';
-  try{
-    final response = await http.get(Uri.parse(url));
-    if(response.statusCode == 200){
-      final jsonData = jsonDecode(response.body);
-      final List results = jsonData['result'];
-      return results.map((json) => BooksApiModel.fromJson(json),).toList();      
-    }else{
-      return [];
-    }
-  }
-  catch (e){
-    log(e.toString());
-  }
-  return [];
-}
-
-Future<String?> fetchAuthorNameById({required String id}) async { 
-  var url = 'https://assessment.eltglobal.in/api/authors/$id';
-  try {
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      final result = jsonData['result'];
-      return result['name'];
-    } else {
-      log('Failed to load author data: ${response.statusCode}');
-      return null;
-    }
-  } catch (e) {
-    log(e.toString());
-    return null;
-  }
-}
