@@ -1,7 +1,7 @@
 import 'package:book_management/src/data/datasource/remote_service.dart';
 import 'package:book_management/src/data/models/models.dart';
 import 'package:book_management/src/presentation/ui/book_details_screen/book_details_screen.dart';
-import 'package:book_management/src/presentation/ui/book_screen/body/book_items/book_items.dart';
+import 'package:book_management/src/presentation/widgets/books_screen_widgets/body/book_items/book_items.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/shimmers.dart';
 import 'package:flutter/material.dart';

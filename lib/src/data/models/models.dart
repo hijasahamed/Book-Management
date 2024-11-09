@@ -35,3 +35,29 @@ class BooksApiModel {
     );
   }
 }
+
+
+class AuthorApiModel {
+  final String id;
+  final String name;
+  final String birthdate;
+  final String biography;
+
+
+  AuthorApiModel({
+    required this.id,
+    required this.name,
+    required this.birthdate,
+    required this.biography,
+
+  });
+
+  factory AuthorApiModel.fromJson(Map<String, dynamic> json) {
+    return AuthorApiModel(
+      id: json['id'].toString(),
+      name: json['name'].toString(),
+      birthdate: json['birthdate'].toString(),
+      biography: json['biography'].toString(),
+    );
+  }
+}

@@ -78,3 +78,21 @@ Future<String?> registerUser(
     return null;
   }
 }
+
+Future<List<AuthorApiModel>> fetchAuthorsDetails()async{
+  const url = 'https://assessment.eltglobal.in/api/authors';
+  try{
+    final response = await http.get(Uri.parse(url));
+    if(response.statusCode == 200){
+      final jsonData = jsonDecode(response.body);
+      final List results = jsonData['result'];
+      return results.map((json) => AuthorApiModel.fromJson(json),).toList();      
+    }else{
+      return [];
+    }
+  }
+  catch (e){
+    log(e.toString());
+  }
+  return [];
+}
