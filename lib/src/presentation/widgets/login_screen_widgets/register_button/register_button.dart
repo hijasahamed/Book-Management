@@ -1,8 +1,8 @@
 import 'package:book_management/src/presentation/bloc/login_screen_bloc/bloc/login_screen_bloc.dart';
 import 'package:book_management/src/presentation/ui/login_screen/login_screen.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
-import 'package:book_management/src/presentation/widgets/common_widgets/text_widget.dart';
 import 'package:book_management/src/presentation/widgets/login_screen_widgets/register_button/register_button_clicked.dart';
+import 'package:book_management/src/presentation/widgets/login_screen_widgets/register_button/register_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,20 +43,10 @@ class RegisterButton extends StatelessWidget {
               return Center(
                 child:
                 state is RegisterButtonClickedCircularIndicatorStopState ?
-                  TextWidget(
-                    text: 'Register',
-                    color: colorWhite,
-                    size: screenSize.width * (14 / 360),
-                    fontFamily: 'interSemiBold',
-                    weight: FontWeight.normal)
+                  RegisterText(screenSize: screenSize)
                  : state is RegisterButtonClickedCircularIndicatorState ?
                   const CircularProgressIndicator(color: colorWhite,)
-                 : TextWidget(
-                    text: 'Register',
-                    color: colorWhite,
-                    size: screenSize.width * (14 / 360),
-                    fontFamily: 'interSemiBold',
-                    weight: FontWeight.normal)
+                 : RegisterText(screenSize: screenSize)
               );
             },
           ),
