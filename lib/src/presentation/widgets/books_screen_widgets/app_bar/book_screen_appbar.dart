@@ -19,5 +19,5 @@ class BookScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
   @override
-  Size get preferredSize => Size.fromHeight(screenSize.height/11);
+  Size get preferredSize => Size.fromHeight(screenSize.height/25);
 }
