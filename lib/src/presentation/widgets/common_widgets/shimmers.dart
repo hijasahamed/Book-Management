@@ -57,7 +57,7 @@ class ItemShimmer extends StatelessWidget {
     ) :
     isAuthors ?
     ListView.builder(
-      itemCount: 6,
+      itemCount: 8,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.all(screenSize.width / 100),

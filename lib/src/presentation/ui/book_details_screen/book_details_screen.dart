@@ -42,16 +42,20 @@ class BookDetailsScreen extends StatelessWidget {
 
 Future<void> addUserRating({required dynamic rating, required String bookId}) async {
   int intRating = rating.toInt();
+  
   try {
     String? token = await decodeToken();
     if (token == null) {
       log("Error: User token is null");
       return;
     }
+    print(intRating);
+    print(bookId);
+    print(token);
 
     final body = json.encode({
-      'bookId': bookId,
-      'rating': intRating,
+      'userId': '67c7d0680d1d0db4',
+      'rating': 2,
     });
 
     const url = 'https://assessment.eltglobal.in/api/books/670f94b2d19360ca93d716eb/ratings:add';
@@ -60,14 +64,16 @@ Future<void> addUserRating({required dynamic rating, required String bookId}) as
       uri,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': token,
+        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM1YTBiZGJmNWUxZWI0ZTciLCJpYXQiOjE3MzExNDE3NjJ9.7y-NldDb_dIOO5Lj40tIeIsEODjKKqdR4NkW27Zpi-Y',
       },
       body: body,
     );
 
     if (response.statusCode == 200) {
       log("Rating updated successfully");
+    
     } else {
+        log(response.body);
       log("Failed to update rating with status code: ${response.statusCode}");
     }
   } catch (e) {

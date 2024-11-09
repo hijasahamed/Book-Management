@@ -4,6 +4,7 @@ import 'package:book_management/src/presentation/ui/book_details_screen/book_det
 import 'package:book_management/src/presentation/widgets/books_screen_widgets/body/book_items/book_items.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/colors.dart';
 import 'package:book_management/src/presentation/widgets/common_widgets/shimmers.dart';
+import 'package:book_management/src/presentation/widgets/common_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -20,41 +21,41 @@ class BooksScreenBody extends StatefulWidget {
 }
 
 class _BooksScreenBodyState extends State<BooksScreenBody> {
-  final TextEditingController _searchController = TextEditingController();
-  List<BooksApiModel> _allBooks = [];
-  List<BooksApiModel> _filteredBooks = [];
-  late Future<void> _initialFetch;
+  final TextEditingController searchController = TextEditingController();
+  List<BooksApiModel> allBooks = [];
+  List<BooksApiModel> filteredBooks = [];
+  late Future<void> initialFetch;
 
   @override
   void initState() {
     super.initState();
-    _initialFetch = _fetchBooks();
-    _searchController.addListener(_onSearchChanged);
+    initialFetch = fetchBooks();
+    searchController.addListener(onSearchChanged);
   }
 
   @override
   void dispose() {
-    _searchController.removeListener(_onSearchChanged);
-    _searchController.dispose();
+    searchController.removeListener(onSearchChanged);
+    searchController.dispose();
     super.dispose();
   }
 
-  void _onSearchChanged() {
-    final query = _searchController.text.toLowerCase();
+  void onSearchChanged() {
+    final query = searchController.text.toLowerCase();
     setState(() {
       if (query.isEmpty) {
-        _filteredBooks = _allBooks;
+        filteredBooks = allBooks;
       } else {
-        _filteredBooks = _allBooks
+        filteredBooks = allBooks
             .where((book) => book.title.toLowerCase().contains(query))
             .toList();
       }
     });
   }
 
-  Future<void> _fetchBooks() async {
-    _allBooks = await fetchBookDetails();
-    _filteredBooks = _allBooks;
+  Future<void> fetchBooks() async {
+    allBooks = await fetchBookDetails();
+    filteredBooks = allBooks;
   }
 
   @override
@@ -83,7 +84,7 @@ class _BooksScreenBodyState extends State<BooksScreenBody> {
                 ),
                 Expanded(
                   child: TextField(
-                    controller: _searchController,
+                    controller: searchController,
                     textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(
                       hintText: 'Search...',
@@ -97,13 +98,15 @@ class _BooksScreenBodyState extends State<BooksScreenBody> {
                     ),
                   ),
                 ),
+                searchController.text.isNotEmpty
+                ? IconButton(onPressed: () => searchController.clear(), icon: const Icon(Icons.clear,color: Colors.grey,)):const SizedBox.shrink()
               ],
             ),
           ),
         ),
         Expanded(
           child: FutureBuilder<void>(
-            future: _initialFetch,
+            future: initialFetch,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return ItemShimmer(
@@ -114,6 +117,11 @@ class _BooksScreenBodyState extends State<BooksScreenBody> {
               } else if (snapshot.hasError) {
                 return const Center(child: Text('Failed to load books'));
               } else {
+                if(filteredBooks.isEmpty){
+                  return Center(
+                    child: TextWidget(text: 'No result for your search', color: Colors.black, size: widget.screenSize.width/25, fontFamily: 'interRegular', weight: FontWeight.normal),
+                  );
+                }
                 return Container(
                   color: searchBarColor,
                   child: GridView.builder(
@@ -123,9 +131,9 @@ class _BooksScreenBodyState extends State<BooksScreenBody> {
                       crossAxisSpacing: 1.5,
                       childAspectRatio: 0.65,
                     ),
-                    itemCount: _filteredBooks.length,
+                    itemCount: filteredBooks.length,
                     itemBuilder: (context, index) {
-                      final book = _filteredBooks[index];
+                      final book = filteredBooks[index];                      
                       return InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(builder: (context) {

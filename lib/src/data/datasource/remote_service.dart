@@ -7,7 +7,7 @@ abstract class RemoteService{
 
 }
 
-
+/// Fetch all book details from Api
 Future<List<BooksApiModel>> fetchBookDetails()async{
   const url = 'https://assessment.eltglobal.in/api/books?page=1&limit=10';
   try{
@@ -26,6 +26,8 @@ Future<List<BooksApiModel>> fetchBookDetails()async{
   return [];
 }
 
+
+/// Fetch autors name with [authorId]
 Future<String?> fetchAuthorNameById({required String id}) async { 
   var url = 'https://assessment.eltglobal.in/api/authors/$id';
   try {
@@ -44,6 +46,8 @@ Future<String?> fetchAuthorNameById({required String id}) async {
   }
 }
 
+
+// Register the user in
 Future<String?> registerUser(
     {required String userName, required String password}) async {
   try {
@@ -79,6 +83,8 @@ Future<String?> registerUser(
   }
 }
 
+
+// Fetches all the Authors details
 Future<List<AuthorApiModel>> fetchAuthorsDetails()async{
   const url = 'https://assessment.eltglobal.in/api/authors';
   try{

@@ -1,6 +1,6 @@
-import 'dart:convert';
 import 'dart:developer';
 
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<String?> decodeToken() async {
@@ -12,18 +12,17 @@ Future<String?> decodeToken() async {
       throw Exception('Token not found');
     }
 
-    final parts = token.split('.');
-    if (parts.length != 3) {
-      throw Exception('Invalid JWT token');
+    final jwt = JWT.decode(token);
+    final userId = jwt.payload['id'] as String?;
+
+    if (userId != null) {
+      log(userId);
+      return userId;
+    } else {
+      throw Exception('User ID not found in token payload');
     }
-
-    final payload = utf8.decode(base64Url.decode(base64Url.normalize(parts[1])));
-    final payloadMap = json.decode(payload) as Map<String, dynamic>;
-
-    String userId = payloadMap['id'];
-    log(userId);
-    return userId;
   } catch (e) {
-    return null; 
+    log("Error decoding token: $e");
+    return null;
   }
 }
